@@ -55,7 +55,7 @@ if ($ImageFileItem){
         $Global:MyOSDCloud.ImageFileItem = $ImageFileItem
         $Global:MyOSDCloud.ImageFileName = $ImageFileName
         $Global:MyOSDCloud.ImageFileFullName = $ImageFileFullName
-        $Global:MyOSDCloud.OSImageIndex = 6 #Pro
+        $Global:MyOSDCloud.OSImageIndex = 6
     }
 }
 #endregion Custom Image
@@ -68,19 +68,6 @@ $DriverPack = Get-OSDCloudDriverPack -Product $Product -OSVersion $OSVersion -OS
 
 if ($DriverPack){
     $Global:MyOSDCloud.DriverPackName = $DriverPack.Name
-}
-
-#If Drivers are expanded on the USB Drive, disable installing a Driver Pack
-if (Test-DISMFromOSDCloudUSB -eq $true){
-    Write-Host "Found Driver Pack Extracted on Cloud USB Flash Drive, disabling Driver Download via OSDCloud" -ForegroundColor Green
-    if ($Global:MyOSDCloud.SyncMSUpCatDriverUSB -eq $true){
-        write-host "Setting DriverPackName to 'Microsoft Update Catalog'"
-        $Global:MyOSDCloud.DriverPackName = 'Microsoft Update Catalog'
-    }
-    else {
-        write-host "Setting DriverPackName to 'None'"
-        $Global:MyOSDCloud.DriverPackName = "None"
-    }
 }
 
 #Enable HPIA | Update HP BIOS | Update HP TPM
