@@ -93,7 +93,8 @@ if ($Manufacturer -match "Lenovo") {
 if ($Manufacturer -match "Microsoft") {
     #Updating Microsoft Surface Driver catalog
     Write-Host "Updating Microsoft Surface Driver catalog"
-    Invoke-RestMethod ""
+    Invoke-RestMethod "https://raw.githubusercontent.com/chield/OSDCloud/main/Update-OSDCloudSurfaceDriverCatalogJustInTime.ps1" | Invoke-Expression
+    Update-OSDCloudSurfaceDriverCatalogJustInTime.ps1 -UpdateDriverPacksJson
 }
 
 #write variables to console
