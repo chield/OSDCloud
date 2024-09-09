@@ -90,6 +90,11 @@ if ($Manufacturer -match "Lenovo") {
     Manage-LenovoBIOSSettings -SetSettings
 }
 
+if ($Manufacturer -match "Microsoft") {
+    #Updating Microsoft Surface Driver catalog
+    Write-Host "Updating Microsoft Surface Driver catalog"
+    Invoke-RestMethod ""
+}
 
 #write variables to console
 Write-Output $Global:MyOSDCloud
