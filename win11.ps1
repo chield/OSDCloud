@@ -80,13 +80,6 @@ if (Test-HPIASupport){
     iex (irm https://raw.githubusercontent.com/chield/OSDCloud/main/Manage-HP-Biossettings.ps1)
     Manage-HPBiosSettings -SetSettings
 }
-
-if ($Manufacturer -match "Lenovo") {
-    #Set Lenovo BIOS Settings to what I want:
-    iex (irm https://github.com/chield/OSDCloud/blob/main/Manage-Lenovo-Biossettings.ps1)
-    Manage-LenovoBIOSSettings -SetSettings
-}
-
 if ($Manufacturer -match "Microsoft") {
     #Updating Microsoft Surface Driver catalog
     Write-Host "Updating Microsoft Surface Driver catalog"
