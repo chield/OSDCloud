@@ -24,19 +24,23 @@ $OSActivation = 'Retail'
 $OSLanguage = 'en-us'
 
 
-#Set OSDCloud Vars
+#=======================================================================
+#   OSDCLOUD VARS
+#=======================================================================
 $Global:MyOSDCloud = [ordered]@{
-    Restart = [bool]$False
-    RecoveryPartition = [bool]$true
-    OEMActivation = [bool]$True
-    WindowsUpdate = [bool]$true
-    WindowsUpdateDrivers = [bool]$true
-    WindowsDefenderUpdate = [bool]$true
-    SetTimeZone = [bool]$true
-    ClearDiskConfirm = [bool]$False
+    Restart               = [bool]$false
+    RecoveryPartition     = [bool]$true
+    OEMActivation         = [bool]$true 
+    WindowsUpdate         = [bool]$true #temporarily disabled same thing almost 10 minutes
+    MSCatalogFirmware     = [bool]$true #temporarily disabled no impact
+    WindowsUpdateDrivers  = [bool]$true #temporarily disabled this is causing long delays on the getting ready screen before the oobe (almost 10 minutes)
+    WindowsDefenderUpdate = [bool]$true #temporarily disabled same thing almost 10 minutes
+    SetTimeZone           = [bool]$true
+    SkipClearDisk         = [bool]$false
+    ClearDiskConfirm      = [bool]$false
     ShutdownSetupComplete = [bool]$false
-    SyncMSUpCatDriverUSB = [bool]$true
-    CheckSHA1 = [bool]$true
+    SyncMSUpCatDriverUSB  = [bool]$true
+    CheckSHA1             = [bool]$true
 }
 
 #Testing Custom Images - Use this if you want to automate using your own WIM / ESD file
@@ -68,17 +72,14 @@ if ($DriverPack){
 }
 
 #Enable HPIA | Update HP BIOS | Update HP TPM
- 
-if (Test-HPIASupport){
+
+$UseHPIA = $true #temporarily disabled
+if ($Manufacturer -match "HP" -and $UseHPIA -eq $true) {
     #$Global:MyOSDCloud.DevMode = [bool]$True
     $Global:MyOSDCloud.HPTPMUpdate = [bool]$True
-    if ($Product -ne '83B2' -or $Model -notmatch "zbook"){$Global:MyOSDCloud.HPIAALL = [bool]$true} #I've had issues with this device and HPIA
-    #{$Global:MyOSDCloud.HPIAALL = [bool]$true}
+    { $Global:MyOSDCloud.HPIAALL = [bool]$true }
     $Global:MyOSDCloud.HPBIOSUpdate = [bool]$true
-    $Global:MyOSDCloud.HPCMSLDriverPackLatest = [bool]$true #In Test 
-    #Set HP BIOS Settings to what I want:
-    iex (irm https://raw.githubusercontent.com/chield/OSDCloud/main/Manage-HP-Biossettings.ps1)
-    Manage-HPBiosSettings -SetSettings
+    $Global:MyOSDCloud.HPCMSLDriverPackLatest = [bool]$true
 }
 if ($Manufacturer -match "Microsoft") {
     #Updating Microsoft Surface Driver catalog
