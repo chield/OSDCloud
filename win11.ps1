@@ -81,12 +81,6 @@ if ($Manufacturer -match "HP" -and $UseHPIA -eq $true) {
     $Global:MyOSDCloud.HPBIOSUpdate = [bool]$true
     $Global:MyOSDCloud.HPCMSLDriverPackLatest = [bool]$true
 }
-if ($Manufacturer -match "Microsoft") {
-    #Updating Microsoft Surface Driver catalog
-    Write-Host "Updating Microsoft Surface Driver catalog"
-    Invoke-RestMethod "https://raw.githubusercontent.com/chield/OSDCloud/main/Update-OSDCloudSurfaceDriverCatalogJustInTime.ps1" | Invoke-Expression
-    Update-OSDCloudSurfaceDriverCatalogJustInTime.ps1 -UpdateDriverPacksJson
-}
 
 #write variables to console
 Write-Output $Global:MyOSDCloud
