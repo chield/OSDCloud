@@ -87,6 +87,9 @@ if ($Manufacturer -match "HP" -and $UseHPIA -eq $true) {
     { $Global:MyOSDCloud.HPIAALL = [bool]$true }
     $Global:MyOSDCloud.HPBIOSUpdate = [bool]$true
     $Global:MyOSDCloud.HPCMSLDriverPackLatest = [bool]$true
+
+if ($Manufacturer -match "HP"){
+    install-module -Name HPCMSL -Force -AcceptLicense -Scope AllUsers -SkipPublisherCheck
 }
 
 #write variables to console
