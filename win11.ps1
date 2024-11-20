@@ -71,6 +71,13 @@ if ($DriverPack){
     $Global:MyOSDCloud.DriverPackName = $DriverPack.Name
 }
 
+#***********************************
+# Updating Surface Driver Catalog
+#***********************************
+Write-Host "Updating Surface Driver Catalog..."
+Invoke-RestMethod "https://raw.githubusercontent.com/chield/OSDCloud/refs/heads/main/Update-OSDCloudSurfaceDriverCatalogJustInTime.ps1" | Invoke-Expression
+Update-OSDCloudSurfaceDriverCatalogJustInTime -UpdateDriverPackJson
+
 #Enable HPIA | Update HP BIOS | Update HP TPM
 
 $UseHPIA = $true #temporarily disabled
