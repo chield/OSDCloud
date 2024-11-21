@@ -10,7 +10,7 @@ Write-Host -ForegroundColor Red -BackgroundColor Black "##                      
 Write-Host -ForegroundColor Red -BackgroundColor Black "##  This is the development branch of the OSDCloud process, please wait 20 seconds before continuing  ##"
 Write-Host -ForegroundColor Red -BackgroundColor Black "##                                                                                                    ##"
 Write-Host -ForegroundColor Red -BackgroundColor Black "########################################################################################################"
-Start-Sleep -Seconds 20
+Start-Sleep -Seconds 10
 clear-host
 
 #=======================================================================
@@ -72,7 +72,6 @@ function Get-OSDCloudDrive {
 #   OSDCLOUD Image
 #=======================================================================
 $uselocalimage = $true
-#$WIMName = 'Windows 11 23H2 - okt.wim'
 $Windowsversion = "$OSVersion $OSReleaseID"
 $OSDCloudDrive = Get-OSDCloudDrive
 Write-Host -ForegroundColor Green -BackgroundColor Black "UseLocalImage is set to: $uselocalimage"
@@ -93,7 +92,7 @@ if ($uselocalimage -eq $true) {
         Write-Host -ForegroundColor Red -BackgroundColor Black "No WIM files found for $Windowsversion using esd as backup."
         Write-Host -ForegroundColor Red -BackgroundColor Black "PLEASE ADD THE WIM FILE TO THE OSDCLOUD USB DRIVE"
         $uselocalimage = $false
-        Start-Sleep -Seconds 10
+        Start-Sleep -Seconds 5
     }
 }
 
@@ -113,8 +112,6 @@ if ($uselocalimage -eq $true) {
         }
     }
 }
-
-Start-Sleep -Seconds 60
 
 #=======================================================================
 #   Specific Driver Pack
@@ -146,20 +143,6 @@ Write-Output $Global:MyOSDCloud
 #   Start OSDCloud installation
 #=======================================================================
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
-
-#=======================================================================
-#   OSDCLOUD Specialize Scripts and modules
-#=======================================================================
-$WINPEDrive = Get-WinPEDrive
-$localscriptsosdfolder = "$WINPEDrive\fblocalscripts"
-$localscriptfolderPath = "C:\Windows\Panther\fblocalscripts"
-if (-NOT (Test-Path "$localscriptfolderPath")) {
-    New-Item -Path "$localscriptfolderPath" -ItemType Directory -Force | Out-Null
-}
-Copy-Item -Path $localscriptsosdfolder\* -Destination $localscriptfolderPath\ -Recurse -Force
-install-module -Name AzureAD -Force -AcceptLicense -Scope AllUsers -SkipPublisherCheck
-install-module -Name WindowsAutopilotIntune -Force -AcceptLicense -Scope AllUsers -SkipPublisherCheck
-
 
 #=======================================================================
 #   DEVELOPER USER CONFIRMATION TO REBOOT
