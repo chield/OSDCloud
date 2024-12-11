@@ -17,8 +17,8 @@ $Product = (Get-MyComputerProduct)
 $Model = (Get-MyComputerModel)
 $Manufacturer = (Get-CimInstance -ClassName Win32_ComputerSystem).Manufacturer
 $OSVersion = 'Windows 11' #Used to Determine Driver Pack
-$OSReleaseID = '23H2' #Used to Determine Driver Pack
-$OSName = 'Windows 11 23H2 x64'
+$OSReleaseID = '24H2' #Used to Determine Driver Pack
+$OSName = 'Windows 11 24H2 x64'
 $OSEdition = 'Pro'
 $OSActivation = 'Retail'
 $OSLanguage = 'en-us'
@@ -45,7 +45,7 @@ $Global:MyOSDCloud = [ordered]@{
 
 #Testing Custom Images - Use this if you want to automate using your own WIM / ESD file
 #Region Custom Image
-$WIMName = 'W11 - Nov 2024.wim'
+$WIMName = 'W1124H2 - Nov 2024.wim'
 $ImageFileItem = Find-OSDCloudFile -Name $WIMName  -Path '\OSDCloud\OS\'
 if ($ImageFileItem){
     $ImageFileItem = $ImageFileItem | Where-Object {$_.FullName -notlike "C*"} | Where-Object {$_.FullName -notlike "X*"} | Select-Object -First 1
