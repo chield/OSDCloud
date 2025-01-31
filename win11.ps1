@@ -45,7 +45,7 @@ $Global:MyOSDCloud = [ordered]@{
 
 #Testing Custom Images - Use this if you want to automate using your own WIM / ESD file
 #Region Custom Image
-$WIMName = 'W1124H2 - Dec 2024.wim'
+$WIMName = 'W1124H2 - Jan 2025.wim'
 $ImageFileItem = Find-OSDCloudFile -Name $WIMName  -Path '\OSDCloud\OS\'
 if ($ImageFileItem){
     $ImageFileItem = $ImageFileItem | Where-Object {$_.FullName -notlike "C*"} | Where-Object {$_.FullName -notlike "X*"} | Select-Object -First 1
