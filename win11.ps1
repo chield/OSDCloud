@@ -113,7 +113,7 @@ if ($Manufacturer -match "HP" -and $UseHPIA -eq $true) {
 }
 
 if ($Manufacturer -match "HP") {
-    install-module -Name HPCMSL -Force -AcceptLicense -Scope AllUsers -SkipPublisherCheck
+    install-module -Name HPCMSL -Force -Scope AllUsers -SkipPublisherCheck
 }
 
 #=======================================================================
