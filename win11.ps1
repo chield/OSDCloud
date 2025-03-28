@@ -113,9 +113,9 @@ if ($Manufacturer -match "HP" -and $UseHPIA -eq $true) {
 }
 
 if ($Manufacturer -match "HP") {
-    install-module -Name PowerShellGet -Scope AllUsers -Force
-    install-PackageProvider -Name NuGet -Scope AllUsers -Force
-    install-module -Name HPCMSL -Force -Scope AllUsers -SkipPublisherCheck
+    Install-Module -Name PowerShellGet -Scope CurrentUser -AllowClobber -Force
+    Install-PackageProvider -Name NuGet -Scope AllUsers -Force
+    Install-Module -Name HPCMSL -Force -Scope AllUsers -SkipPublisherCheck
 }
 
 #=======================================================================
