@@ -113,8 +113,9 @@ if ($Manufacturer -match "HP" -and $UseHPIA -eq $true) {
 }
 
 if ($Manufacturer -match "HP") {
+    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Scope AllUsers -Force
+    Start-Sleep -Seconds 60 
     Install-Module -Name PowerShellGet -Scope CurrentUser -AllowClobber -Force
-    Install-PackageProvider -Name NuGet -Scope AllUsers -Force
     Install-Module -Name HPCMSL -Force -Scope AllUsers -SkipPublisherCheck
 }
 
