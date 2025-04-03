@@ -11,7 +11,7 @@ $Manufacturer = (Get-CimInstance -ClassName Win32_ComputerSystem).Manufacturer
 $OSVersion = 'Windows 11' #Used to Determine Driver Pack
 $OSReleaseID = '24H2' #Used to Determine Driver Pack
 $OSName = 'Windows 11 24H2 x64'
-$OSEdition = 'Pro'
+$OSEdition = 'Ent'
 $OSActivation = 'Retail'
 $OSLanguage = 'en-us'
 
@@ -90,7 +90,7 @@ if ($uselocalimage -eq $true) {
             $Global:MyOSDCloud.ImageFileItem = $ImageFileItem
             $Global:MyOSDCloud.ImageFileName = $ImageFileName
             $Global:MyOSDCloud.ImageFileFullName = $ImageFileFullName
-            $Global:MyOSDCloud.OSImageIndex = 5
+            $Global:MyOSDCloud.OSImageIndex = 3
         }
     }
 }
