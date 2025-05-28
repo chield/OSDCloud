@@ -78,6 +78,8 @@ if ($uselocalimage -eq $true) {
     }
 }
 
+Start-Sleep -Seconds 180
+
 if ($uselocalimage -eq $true) {
     $ImageFileItem = Find-OSDCloudFile -Name $WIMName  -Path "\OSDCloud\OS\"
     if ($ImageFileItem) {
