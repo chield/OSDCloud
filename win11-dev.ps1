@@ -50,6 +50,8 @@ function Get-OSDCloudDrive {
     return $OSDCloudDrive
 }
 
+Read-Host -Prompt "Press Enter to continue"
+
 #=======================================================================
 #   OSDCLOUD Image
 #=======================================================================
@@ -78,7 +80,7 @@ if ($uselocalimage -eq $true) {
     }
 }
 
-Start-Sleep -Seconds 180
+Read-Host -Prompt "Press Enter to continue"
 
 if ($uselocalimage -eq $true) {
     $ImageFileItem = Find-OSDCloudFile -Name $WIMName  -Path "\OSDCloud\OS\"
@@ -96,6 +98,8 @@ if ($uselocalimage -eq $true) {
         }
     }
 }
+
+Read-Host -Prompt "Press Enter to continue"
 
 #=======================================================================
 #   Specific Driver Pack
@@ -120,6 +124,8 @@ if ($Manufacturer -match "HP") {
     Install-Module -Name HPCMSL -Force -Scope AllUsers -SkipPublisherCheck
 }
 
+Read-Host -Prompt "Press Enter to continue"
+
 #=======================================================================
 #   Write OSDCloud VARS to Console
 #=======================================================================
@@ -139,10 +145,14 @@ write-host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $
 
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
+Read-Host -Prompt "Press Enter to continue"
+
 write-host "OSDCloud Process Complete, Running Custom Actions From Script Before Reboot" -ForegroundColor Green
-Start-Sleep -Seconds 180
+
 #=======================================================================
 #   REBOOT DEVICE
 #=======================================================================
 Write-Host  -ForegroundColor Green "Restarting now!"
 Restart-Computer -Force
+
+Read-Host -Prompt "Press Enter to continue"
