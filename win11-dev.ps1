@@ -12,7 +12,7 @@ $OSVersion = 'Windows 11' #Used to Determine Driver Pack
 $OSReleaseID = '24H2' #Used to Determine Driver Pack
 $OSName = 'Windows 11 24H2 x64'
 $OSEdition = 'Enterprise'
-$OSActivation = 'Retail'
+$OSActivation = 'Volume'
 $OSLanguage = 'en-us'
 
 #=======================================================================
@@ -142,6 +142,7 @@ import-module "$ModulePath\OSD.psd1" -Force
 #=======================================================================
 Write-Host "Starting OSDCloud" -ForegroundColor Green
 write-host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage"
+Read-Host -Prompt "Press Enter to continue"
 
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
