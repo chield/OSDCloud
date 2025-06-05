@@ -1,4 +1,4 @@
-$ScriptName = 'Interstellar Windows 11'
+$ScriptName = 'Windows 11'
 $ScriptVersion = '24.7.4.4'
 Write-Host -ForegroundColor Green "$ScriptName $ScriptVersion"
 
